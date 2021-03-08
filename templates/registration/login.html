@@ -6,7 +6,8 @@
         <p>Nazwa użytkownika lub hasło są nieprawidłowe.
             Spróbuj ponownie.</p>
     {% else %}
-        <p>Wpisz dane logowania</p>
+        <p>Wpisz dane logowania. Jeśli nie masz jeszcze konta, możesz się zarejestrować
+            <a href="{% url 'registration' %}">tutaj</a>.</p>
     {% endif %}
     <form action="" method="post">
     {% csrf_token %}

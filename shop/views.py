@@ -1,6 +1,10 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import FormView
+
+from shop.forms import RegistrationForm
 
 
 class IndexView(View):
@@ -8,11 +12,10 @@ class IndexView(View):
         return render(request, 'shop/base.html')
 
 
-
-class RegistrationFormView(FormView):
-    template_name = 'add_user.html'
-    form_class = AddUserForm
-    success_url = '/login'
+class RegistrationView(FormView):
+    template_name = 'registration/register.html'
+    form_class = RegistrationForm
+    success_url = reverse_lazy('login')
 
     def form_valid(self, form):
         User.objects.create_user(
