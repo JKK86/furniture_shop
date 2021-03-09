@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -16,6 +17,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('product_list_by_category', args=[self.slug])
 
 
 class Wood(models.Model):
@@ -37,6 +41,9 @@ class Product(models.Model):
     description = models.TextField(blank=True, verbose_name="Opis")
     price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Cena")
     stock = models.IntegerField(verbose_name="Dostępność")
+    width = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Szerokość")
+    depth = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Głębokość")
+    height = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Wysokość")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products", verbose_name="Kategoria")
     wood = models.ForeignKey(Wood, on_delete=models.CASCADE, verbose_name="Rodzaj drewna")
     image = models.ImageField(blank=True, upload_to='products/%Y/%m/%d/', verbose_name="Zdjęcie")
@@ -55,3 +62,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('product_detail', args=[self.id, self.slug])

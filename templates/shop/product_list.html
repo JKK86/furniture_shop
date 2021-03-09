@@ -1,0 +1,23 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+    <div id="sidebar"></div>
+    <ul>
+        {% for category in categories %}
+            <li><a href="{{ category.get_absolute_url }}">{{ category }}</a></li>
+        {% endfor %}
+    </ul>
+    <div id="product_list">
+        {% if category %}
+            <h1>{{ category }}</h1>
+        {% else %}
+            <h1>Produkty</h1>
+        {% endif %}
+            {% for product in products %}
+                <p>{{ product.name }}</p>
+                <p>Cena: {{ product.price }}</p>
+                <p>Szerokość: {{ product.width }}</p>
+                <p>Głębokość: {{ product.depth }}</p>
+                <p>Wysokość: {{ product.height }}</p>
+            {% endfor %}
+    </div>
+{% endblock %}

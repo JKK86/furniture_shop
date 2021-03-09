@@ -30,6 +30,9 @@ urlpatterns = [
     path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('registration/', views.RegistrationView.as_view(), name='registration'),
+    path('', views.ProductListView.as_view(), name='product_list'),
+    path('<slug:category_slug>/', views.ProductListView.as_view(), name='product_list_by_category'),
+    path('<int:id>/<slug:slug>/', views.ProductDetailView.as_view(), name='product_detail'),
 
     path('', views.IndexView.as_view(), name='index')
 ]
