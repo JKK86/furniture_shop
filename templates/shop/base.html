@@ -6,23 +6,36 @@
     <title>{% block title %} {% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static "css/base_style.css" %}">
 </head>
 <body>
-<div id="'header">
-    <span class='logo'>SKLEP MEBLOWY</span> {#    LOGO#}
+<div id="header">
+        <a href="/" class='logo'>
+            <img src="{% static "img/logo1.png" %}" height=60px width=60px alt = 'Logo'>
+        <p>SKLEP MEBLOWY </p></a>
     <ul class="menu">
-        <li>Home</li>
     </ul>
-    <span class="user">
+</div>
+<div id="subheader">
+    <div class="user">
         {% if user.is_authenticated %}
             Witaj, {{ user.first_name }}!
             <a href="{% url 'logout' %}">Wyloguj</a>
         {% else %}
             <a href="{% url 'login' %}">Zaloguj</a>
         {% endif %}
-    </span>
-    <span class="cart">Koszyk jest pusty</span>
+    </div>
+    <div class="search">
+        <form method="get" action="{% url 'product_search' %}" id="form-search">
+            <input type="text" name="search_product" placeholder="Wyszukaj produkt">
+            <input type="submit" value="&#128269">
+        </form>
+    </div>
+    <div class="cart">
+        Koszyk jest pusty
+    </div>
 </div>
+
 <div id="content">
     {% block content %}
     {% endblock %}

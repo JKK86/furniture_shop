@@ -1,0 +1,21 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+Produkty - {{ product.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="product-detail">
+        <img src="{% if product.image %} {{ product.image.url }} {% else %}
+                    {% static "img/no_image.png" %} {% endif %}" alt="Zdjęcie produktu">
+        <h1>{{ product.name }}</h1>
+        <h3><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h3>
+        <p>{{ product.price }} zł</p>
+        <p>{{ product.description | linebreaks}}</p>
+        <p>Szerokość: {{ product.width }} cm</p>
+        <p>Głębokość: {{ product.depth }} cm</p>
+        <p>Wysokość: {{ product.height }} cm</p>
+        <p>Rodzaj drewna: {{ product.wood }}</p>
+        <p>{{ product.available }}</p>
+    </div>
+{% endblock %}

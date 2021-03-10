@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
@@ -6,11 +7,6 @@ from django.views.generic import FormView
 
 from shop.forms import RegistrationForm
 from shop.models import Product, Category
-
-
-class IndexView(View):
-    def get(self, request):
-        return render(request, 'shop/base.html')
 
 
 class RegistrationView(FormView):
@@ -31,12 +27,21 @@ class RegistrationView(FormView):
 
 class ProductListView(View):
     def get(self, request, category_slug=None):
-        products = Product.objects.filter(stock__gt=0)
+        products_list = Product.objects.filter(stock__gt=0)
         categories = Category.objects.all()
         category = None
         if category_slug:
             category = get_object_or_404(Category, slug=category_slug)
-            products = products.filter(category=category)
+            products_list = products_list.filter(category=category)
+        paginator = Paginator(products_list, 30)
+        page = request.GET.get('page', 1)
+        try:
+            products = paginator.page(page)
+        except PageNotAnInteger:
+            products = paginator.page(1)
+        except EmptyPage:
+            products = paginator.page(paginator.num_pages)
+
         return render(request, 'shop/product_list.html', {
             'products': products, 'categories': categories, 'category': category
         })
@@ -44,4 +49,29 @@ class ProductListView(View):
 
 class ProductDetailView(View):
     def get(self, request, id, slug):
-        pass
+        product = get_object_or_404(Product, pk=id, slug=slug)
+        if product.stock == 0:
+            product.available = "Produkt niedostępny"
+        else:
+            product.available = "Produkt dostępny"
+        return render(request, 'shop/product_detail.html', {'product': product})
+
+
+class SearchProductView(View):
+    def get(self, request):
+        search_name = request.GET.get('search_product')
+        products_list = Product.objects.filter(name__icontains=search_name)
+        categories = Category.objects.all()
+        category = None
+        paginator = Paginator(products_list, 30)
+        page = request.GET.get('page', 1)
+        try:
+            products = paginator.page(page)
+        except PageNotAnInteger:
+            products = paginator.page(1)
+        except EmptyPage:
+            products = paginator.page(paginator.num_pages)
+
+        return render(request, 'shop/product_list.html', {
+            'products': products, 'categories': categories, 'category': category
+        })
