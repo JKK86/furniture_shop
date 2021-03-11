@@ -1,4 +1,33 @@
 
+
+/*Tu zmienione*/
+table {
+    width:100%;
+    border-spacing:0;
+    border-collapse: collapse;
+}
+
+
+
+div.cart {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+table.cart {
+    margin-bottom:40px;
+}
+
+/*Tu zmienione*/
+table.cart img {
+    width:120px;
+    height:120px;
+}
+
+t
+
+/*Tu zmienione*/
 #header {
     display: flex;
     justify-content: flex-start;
@@ -7,6 +36,7 @@
     font-size:18px;
     overflow:auto;
 }
+/*Tu zmienione*/
 #subheader {
     display: flex;
     justify-content: space-between;
@@ -16,7 +46,7 @@
     padding:15px 100px;
     overflow:auto;
 }
-
+/*Tu zmienione*/
 #header .logo {
     font-family: 'Ubuntu', sans-serif;
     display: flex;
@@ -26,63 +56,27 @@
     font-size:22px;
     margin-right:10%;
 }
-
+/*Tu zmienione*/
 #subheader .cart {
     float:right;
     padding-top:4px;
 }
-
+/*Tu zmienione*/
 #subheader .user{
     float:left;
     padding-top:4px;
 }
-
+/*Tu zmienione*/
 #subheader .search{
     float:left;
     padding-top:4px;
 }
-
+/*Tu zmienione*/
 #content {
     padding:0 100px;
     overflow:hidden;
 }
 
-#sidebar {
-    width:220px;
-    padding:30px 20px 0 0;
-    float:left;
-}
-
-#sidebar ul{
-    margin:0;
-    padding:0;
-}
-
-#sidebar ul li {
-    margin:0;
-    list-style:none;
-    padding:10px 14px;
-}
-
-#sidebar ul li a {
-    display:block;
-}
-
-#sidebar ul li.selected {
-    background:#5993bb;
-    border-radius:4px;
-}
-
-#sidebar ul li.selected a {
-    color:#fff;
-}
-
-#main {
-    float:left;
-    width: 96%;
-    margin-right:-220px;
-    overflow:hidden;
-}
 
 .product-list .item {
     width:25%;
@@ -98,27 +92,11 @@
     margin-bottom:8px;
 }
 
-.product-detail {
-    text-align:justify;
-}
 
-.product-detail .price {
-    color:#333;
-    font-size:28px;
-    font-weight:bold;
-}
-
+/*Tu zmienione*/
 .product-detail img {
-    width:40%;
+    width:450px;
+    height:450px;
     float:left;
     padding:0 20px 20px 0;
 }
-
-.product-detail h1 {
-    margin-bottom:0;
-}
-
-.product-detail h2 {
-    margin-top:10px;
-}
-

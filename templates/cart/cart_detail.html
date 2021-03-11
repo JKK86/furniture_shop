@@ -1,0 +1,63 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    Koszyk
+{% endblock %}
+
+{% block content %}
+    <div class="cart">
+    {% if not items %}
+        <h3>Twój koszyk jest pusty</h3>
+    {% else %}
+        <h3>Zawartość Twojego koszyka</h3>
+        <table class="cart">
+            <thead>
+                <tr>
+                    <th>Obraz</th>
+                    <th>Produkt</th>
+                    <th>Ilość</th>
+                    <th>Kolor</th>
+                    <th>Cena jednostkowa</th>
+                    <th>Wartość</th>
+                    <th>Usuń</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                {% with product=item.product %}
+                <tr>
+                    <td><img src="{% if product.image %} {{ product.image.url }} {% else %}
+                    {% static "img/no_image.png" %} {% endif %}" alt="Zdjęcie produktu"></td>
+                    <td><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
+                    <td>
+                        <form action="{% url 'cart_add' product.id %}" method="post" id="update_quantity_form">
+                            {% csrf_token %}
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.override_quantity }}
+                            <input type="submit" value="Zmień">
+                        </form>
+                    </td>
+                    <td>Kolor</td>
+                    <td>{{ product.price }} zł</td>
+                    <td>{{ item.total_price }} zł</td>
+                    <td>
+                        <form action="{% url 'cart_remove' product.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="Usuń">
+                        </form>
+                    </td>
+                </tr>
+                {% endwith %}
+            {% endfor %}
+            <tr>
+                <td colspan="5">Do zapłaty</td>
+                <td>{{ cart.total_price }} zł</td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="{% url 'product_list' %}">Kontynuuj zakupy</a>
+        <a href="">Do kasy</a>
+    {% endif %}
+    </div>
+
+{% endblock %}

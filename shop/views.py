@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import FormView
 
+from cart.forms import CartAddProductForm
 from shop.forms import RegistrationForm
 from shop.models import Product, Category
 
@@ -54,7 +55,8 @@ class ProductDetailView(View):
             product.available = "Produkt niedostępny"
         else:
             product.available = "Produkt dostępny"
-        return render(request, 'shop/product_detail.html', {'product': product})
+        form = CartAddProductForm()
+        return render(request, 'shop/product_detail.html', {'product': product, 'form':form})
 
 
 class SearchProductView(View):

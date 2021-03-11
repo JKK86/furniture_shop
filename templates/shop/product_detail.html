@@ -16,6 +16,11 @@ Produkty - {{ product.name }}
         <p>Głębokość: {{ product.depth }} cm</p>
         <p>Wysokość: {{ product.height }} cm</p>
         <p>Rodzaj drewna: {{ product.wood }}</p>
-        <p>{{ product.available }}</p>
+        <p>{{ product.available }} ({{ product.stock }} szt. w magazynie)</p>
+        <form action="{% url 'cart_add' product.id %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Dodaj do koszyka">
+        </form>
     </div>
 {% endblock %}

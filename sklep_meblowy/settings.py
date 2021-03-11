@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +63,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart_summary'
             ],
         },
     },
@@ -121,6 +123,6 @@ except ModuleNotFoundError:
     print("Uzupełnij dane i spróbuj ponownie!")
     exit(0)
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'product_list'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
