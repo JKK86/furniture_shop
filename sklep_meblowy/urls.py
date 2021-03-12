@@ -21,6 +21,7 @@ from django.contrib.auth import views as auth_views
 
 from shop import views
 from cart import views as cart_views
+from orders import views as orders_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,6 +39,8 @@ urlpatterns = [
     path('cart/', cart_views.CartDetailView.as_view(), name='cart_detail'),
     path('cart/add/<int:product_id>/', cart_views.CartAddProductView.as_view(), name='cart_add'),
     path('cart/remove/<int:product_id>/', cart_views.CartRemoveProductView.as_view(), name='cart_remove'),
+
+    path('orders/create/', orders_views.OrderCreateView.as_view(), name='order_create'),
 
     path('', views.ProductListView.as_view(), name='product_list'),
     path('<slug:category_slug>/', views.ProductListView.as_view(), name='product_list_by_category'),

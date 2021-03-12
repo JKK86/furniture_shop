@@ -1,0 +1,10 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    Złożono zamówienie!
+{% endblock %}
+{% block content %}
+<h1>Dziękujemy!</h1>
+    <p>Zamówienie zostało złożone. Numer zamówienia to <strong> {{ order.id }} </strong></p>
+
+{% endblock %}

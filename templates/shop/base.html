@@ -34,9 +34,11 @@
     <div class="my_cart">
         {% if cart_summary %}
             {% if cart_summary|length > 0 %}
-                Koszyk:
-                {{ cart_summary|length }} produkt{{ cart_summary|length|pluralize:'y' }}
-                {{ cart_summary.get_total_price }} zł
+                <a href="{% url 'cart_detail' %}">
+                    Koszyk &#128722
+                    ({{ cart_summary|length }})
+                    {{ cart_summary.get_total_price }} zł
+                </a>
             {% else %}
                 Koszyk jest pusty
             {% endif %}

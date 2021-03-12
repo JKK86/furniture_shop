@@ -1,0 +1,32 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    Kasa
+{% endblock %}
+{% block content %}
+<h1>Kasa</h1>
+    <div class="order-info">
+    <h3>Zamówienie</h3>
+    <ul>
+        {% for item in items %}
+            <li>
+            {{ item.quantity }}x {{ item.product.name }}
+            {{ item.total_price }}zł
+            </li>
+        {% endfor %}
+    </ul>
+    <p>Wartość całkowita: {{ cart.get_total_price }} zł</p>
+    </div>
+
+    <form action="" method="post">
+    {% csrf_token %}
+    <div>
+        {{ form_delivery_type.as_p }}
+    </div>
+    <div>
+        {{ form_delivery_address.as_p }}
+    </div>
+        <input type="submit" value="Złóż zamówienie">
+    </form>
+    
+{% endblock %}

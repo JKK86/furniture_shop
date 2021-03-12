@@ -1,11 +1,13 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.models import User
-from django.views.decorators.http import require_POST
 
 from cart.forms import CartAddProductForm
 from cart.models import CartProduct, Cart
+from orders.forms import DeliveryTypeForm
+from orders.models import ODBIOR
 from shop.models import Product
 
 
@@ -42,6 +44,9 @@ class CartAddProductView(LoginRequiredMixin, View):
                 cartproduct.quantity += quantity
             else:
                 cartproduct.quantity = quantity
+            if cartproduct.quantity > product.stock:
+                cartproduct.quantity = product.stock
+                messages.warning(request, "Ze względu na dostępność, liczba zamówionych produktów została ograniczona")
             cartproduct.save()
             return redirect('cart_detail')
 
