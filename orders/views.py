@@ -4,12 +4,12 @@ from django.views import View
 
 from cart.models import Cart
 from orders.forms import DeliveryTypeForm, DeliveryAddressForm
-from orders.models import ODBIOR, Order, OrderItem, DeliveryAddress
+from orders.models import ODBIOR, Order, OrderItem, DeliveryAddress, KURIER
 
 
 class OrderCreateView(View):
     def get(self, request):
-        form_delivery_type = DeliveryTypeForm(initial={'delivery_type': ODBIOR})
+        form_delivery_type = DeliveryTypeForm(initial={'delivery_type': KURIER})
         form_delivery_address = DeliveryAddressForm()
         user = request.user
         cart = Cart.objects.get(user=user)
@@ -27,7 +27,9 @@ class OrderCreateView(View):
     def post(self, request):
         user = request.user
         cart = Cart.objects.get(user=user)
+        items = cart.cartproduct_set.all()
         form_delivery_type = DeliveryTypeForm(request.POST)
+        form_delivery_address = DeliveryAddressForm(request.POST)
         if form_delivery_type.is_valid():
             delivery = form_delivery_type.cleaned_data['delivery_type']
             if delivery == "OD":
@@ -55,16 +57,26 @@ class OrderCreateView(View):
                         delivery_address=delivery_address
                     )
                 else:
-                    return redirect('order_create')
-
-            for item in cart.cartproduct_set.all():
+                    return render(request, 'orders/order_create.html', {
+                        'form_delivery_type': form_delivery_type,
+                        'form_delivery_address': form_delivery_address,
+                        'cart': cart,
+                        'items': items
+                    })
+            for item in items:
                 OrderItem.objects.create(
                     product=item.product,
                     order=order,
                     quantity=item.quantity,
                     price=item.product.price)
-
-            cart.cartproduct_set.all().delete()
-            return render(request, 'orders/order_created.html', {'order':order})
+                item.product.stock -= item.quantity
+                item.product.save()
+            items.delete()
+            return render(request, 'orders/order_created.html', {'order': order})
         else:
-            return redirect('order_create')
+            return render(request, 'orders/order_create.html', {
+                'form_delivery_type': form_delivery_type,
+                'form_delivery_address': form_delivery_address,
+                'cart': cart,
+                'items': items
+            })

@@ -6,5 +6,6 @@
 {% block content %}
 <h1>Dziękujemy!</h1>
     <p>Zamówienie zostało złożone. Numer zamówienia to <strong> {{ order.id }} </strong></p>
+    <p><a href="{% url 'product_list' %}">Powrót na stronę główną</a></p>
 
 {% endblock %}

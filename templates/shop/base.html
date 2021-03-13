@@ -32,7 +32,7 @@
         </form>
     </div>
     <div class="my_cart">
-        {% if cart_summary %}
+        {% if user.is_authenticated %}
             {% if cart_summary|length > 0 %}
                 <a href="{% url 'cart_detail' %}">
                     Koszyk &#128722
