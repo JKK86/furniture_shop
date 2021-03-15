@@ -7,7 +7,7 @@
 {% block content %}
     <div class="cart">
     {% if not items %}
-        <h3>Twój koszyk jest pusty</h3>
+        <h5 class="info">Twój koszyk jest pusty</h5>
     {% else %}
         <h3>Zawartość Twojego koszyka</h3>
         {% if messages %}
@@ -50,7 +50,7 @@
                     <td>
                         <form action="{% url 'cart_remove' product.id %}" method="post">
                             {% csrf_token %}
-                            <input type="submit" value="Usuń">
+                            <input class="btn-delete" type="submit" value="Usuń">
                         </form>
                     </td>
                 </tr>

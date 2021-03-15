@@ -7,9 +7,9 @@ class RegistrationForm(forms.ModelForm):
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
 
+    username = forms.CharField(label="Użytkownik", max_length=32)
     password = forms.CharField(label="Hasło", min_length=8, widget=forms.PasswordInput)
-    password_repeat = forms.CharField(label="Powtórz hasło", min_length=8, widget=forms.PasswordInput,
-                                      help_text="Wprowadź jeszcze raz to samo hasło co powyżej")
+    password_repeat = forms.CharField(label="Powtórz hasło", min_length=8, widget=forms.PasswordInput)
 
     def clean(self):
         cleaned_data = super().clean()

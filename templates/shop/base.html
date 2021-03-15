@@ -10,20 +10,10 @@
 </head>
 <body>
 <div id="header">
-        <a href="/" class='logo'>
+    <div class="logo">
+        <a href="/" class="logo">
             <img src="{% static "img/logo1.png" %}" height=60px width=60px alt = 'Logo'>
-        <p>SKLEP MEBLOWY </p></a>
-    <ul class="menu">
-    </ul>
-</div>
-<div id="subheader">
-    <div class="user">
-        {% if user.is_authenticated %}
-            Witaj {{ user.first_name }}!
-            <a href="{% url 'logout' %}">Wyloguj</a>
-        {% else %}
-            <a href="{% url 'login' %}">Zaloguj</a>
-        {% endif %}
+            <p>SKLEP MEBLOWY</p> </a>
     </div>
     <div class="search">
         <form method="get" action="{% url 'product_search' %}" id="form-search">
@@ -31,6 +21,26 @@
             <input type="submit" value="&#128269">
         </form>
     </div>
+    <div class="contact">
+        <p><span class="info-important"> &#128222 +48 1500 100 900 </span>(9:00-17:00 w dni powszednie)</p>
+        <p><span class="info-important"> &#128231 biuro@sklep_meblowy.pl</span></p>
+    </div>
+    <div class="contact">
+        <p><span class="info-important"> &#128666 Zakupy powyżej 150 zł wysyłamy <strong>GRATIS</strong></span>
+    </div>
+</div>
+<div id="subheader">
+    <div class="user">
+        {% if user.is_authenticated %}
+            <span>Witaj {{ user.first_name }}!</span>
+            <a href="">Moje konto</a>
+            <a href="{% url 'logout' %}">Wyloguj</a>
+        {% else %}
+            <a href="{% url 'login' %}">Zaloguj</a>
+            <a href="{% url 'registration' %}">Załóż konto</a>
+        {% endif %}
+    </div>
+
     <div class="my_cart">
         {% if user.is_authenticated %}
             {% if cart_summary|length > 0 %}
@@ -40,7 +50,9 @@
                     {{ cart_summary.get_total_price }} zł
                 </a>
             {% else %}
+                <a href="{% url 'cart_detail' %}">
                 Koszyk jest pusty
+                </a>
             {% endif %}
         {% endif %}
     </div>

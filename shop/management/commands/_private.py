@@ -7,19 +7,8 @@ from shop.models import Product, Category, Wood
 
 def create_name():
     fake = Factory.create("pl_PL")
-    categories = Category.objects.all()
-    categories = [category.name.split()[0] for category in categories]
-    for category in categories:
-        if category == 'Stoły':
-            category = 'Stół'
-        if category == 'Meble':
-            category = 'Mebel do ogrodu'
-        if category[-1] == 'y' or category[-1] == 'i':
-            category[-1] = 'a'
-        elif category[-1] == 'a':
-            category[-1] = 'o'
-
-    return random.choice(categories) + fake.first_name()
+    categories =['Komoda', 'Krzesło', 'Mebel do ogrodu', 'Łóżko', 'Meblościanka', 'Półka', 'Stół', 'Szafka', 'Szafa']
+    return random.choice(categories) + " " + fake.first_name()
 
 
 def create_products():
@@ -35,7 +24,7 @@ def create_products():
         width = random.randint(50, 300)
         depth = random.randint(20, 160)
         height = random.randint(20, 280)
-        category = Category.objects.filter(name__startswith=name[0:1])[0]
+        category = Category.objects.filter(name__startswith=name[0:2])[0]
         wood = random.choice(woods)
         Product.objects.create(name=name,
                                slug=slug,

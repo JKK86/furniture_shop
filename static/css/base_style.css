@@ -1,4 +1,53 @@
+/*@import url(http://fonts.googleapis.com/css?family=Ubuntu);*/
 
+body {
+    margin:0;
+    padding:0;
+    font-family:helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5 , h6 {
+    font-family: 'Ubuntu', sans-serif; font-weight:normal;
+}
+
+a {
+    text-decoration:none;
+    /*color:#5993bb;*/
+    color:#519D9E;
+    /*color: #4F86C6;*/
+}
+
+a:hover {
+    color:#77b6e2;
+}
+
+a.button, input[type="submit"] {
+    color:#fff;
+    /*background:#5993bb;*/
+    background:#519D9E;
+    border-radius:4px;
+    padding:10px 20px;
+    font-size:14px;
+    border:0;
+}
+
+a.button.light {
+    color:#666;
+    background:#ededed;
+}
+
+input[type="submit"].btn-delete {
+    background: red;
+}
+
+
+.text-left {
+    text-align:left;
+}
+
+.text-right {
+    text-align:right;
+}
 
 /*Tu zmienione*/
 table {
@@ -7,7 +56,26 @@ table {
     border-collapse: collapse;
 }
 
+table th, table td {
+    text-align:left;
+    font-size:14px;
+    padding:10px;
+    margin:0;
+}
 
+tbody tr:nth-child(odd) {
+    background:#efefef;
+}
+
+tbody tr.subtotal {
+    background:#ccc;
+}
+
+thead th, tbody tr.total {
+    background:#5993bb;
+    color:#fff;
+    font-weight:bold;
+}
 
 div.cart {
     width: 80%;
@@ -25,65 +93,254 @@ table.cart img {
     height:120px;
 }
 
-t
+tbody td.num {
+    text-align:right;
+}
 
-/*Tu zmienione*/
+td input[type="submit"] {
+    font-size:12px;
+    padding:4px 10px;
+}
+
+form p label, form p input {
+    float:left;
+    clear:both;
+}
+
+form p label {
+    font-size:14px;
+    padding-bottom:4px;
+}
+
+form p input {
+    width:300px;
+    font-size:13px;
+    margin-bottom:10px;
+    padding:10px 12px;
+    border:0;
+    background:#efefef;
+    color:#666;
+    border-radius:4px;
+}
+
+#update_quantity_form input[type=number] {
+    width: 40px;
+
+}
+
+ul.errorlist {
+   float:left;
+   color:#ff0000;
+   clear:both;
+   font-size:13px;
+   margin:0;
+   padding:0;
+}
+
+/*------------------------------*/
+/*---- Messages----*/
+/*------------------------------*/
+
+
+.info {
+    background-color: #D8E6E7;
+    width: 100%;
+    padding: 20px 10px;
+    border-top: 1px solid #77AAAD;
+    border-bottom: 1px solid #77AAAD;
+}
+
+.messages li.warning {
+    list-style: none;
+    background-color: #FDD692;
+    width: 100%;
+    padding: 20px 10px;
+    border-top: 1px solid #FFBC42;
+    border-bottom: 1px solid #FFBC42;
+}
+
+
+/*------------------------------*/
+/*---- Header ----*/
+/*------------------------------*/
+
 #header {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     padding:10px 100px;
     font-size:18px;
     overflow:auto;
 }
-/*Tu zmienione*/
+
+#header .logo {
+    /*font-family: Brush Script MT, cursive;*/
+    font-family: 'Ubuntu', sans-serif;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color:#333;
+    font-size:22px;
+    margin-right:20px;
+}
+
+.logo img {
+    margin-right: 5px;
+}
+
+#header .search input[type="submit"] {
+    background:#fff;
+    padding:0;
+    font-size:18px;
+    margin-right:50px;
+}
+
+#header .contact {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color:#333;
+    font-size:14px;
+    /*margin-right:20px;*/
+}
+
+.info-important {
+    /*color: #9055A2;*/
+    /*color: #333;*/
+    font-size:18px;
+    margin-left: 20px;
+}
+
+/*------------------------------*/
+/*---- Subheader ----*/
+/*------------------------------*/
+
 #subheader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background:#ececec;
-    color:#444;
-    padding:15px 100px;
-    overflow:auto;
+    /*background:  #D5F1E7;*/
+    /*background:  #ececec;*/
+    background:   #519D9E;
+    /*color:#444;*/
+    color:#fff;
+    margin: 0 100px;
+    padding:5px 0;
+    /*overflow:auto;*/
 }
-/*Tu zmienione*/
-#header .logo {
-    font-family: 'Ubuntu', sans-serif;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color:#333;
-    font-size:22px;
-    margin-right:10%;
+
+#subheader .user span {
+    padding:20px 10px 20px 10px;
+
 }
-/*Tu zmienione*/
-#subheader .cart {
-    float:right;
-    padding-top:4px;
+
+#subheader .user a {
+    text-transform: uppercase;
+    transition: 0.4s;
+    padding:20px 10px;
+    color: #fff;
+    font-weight: bold;
 }
-/*Tu zmienione*/
-#subheader .user{
-    float:left;
-    padding-top:4px;
+
+#subheader .my_cart a {
+    padding:20px 10px;
+    color: #fff;
 }
-/*Tu zmienione*/
-#subheader .search{
-    float:left;
-    padding-top:4px;
+
+#subheader a:hover {
+    color: #519D9E;
+    background: #fff;
 }
-/*Tu zmienione*/
+
+#subheader .my_cart {
+    padding: 20px 10px;
+}
+
+/*------------------------------*/
+/*---- Content ----*/
+/*------------------------------*/
+
+
 #content {
     padding:0 100px;
     overflow:hidden;
+    /*display: flex;*/
+    /*justify-content: flex-start;*/
+}
+
+/*------------------------------*/
+/*---- Main ----*/
+/*------------------------------*/
+
+#main {
+    overflow:hidden;
+    display: flex;
+}
+
+/*------------------------------*/
+/*---- Sidebar ----*/
+/*------------------------------*/
+
+#sidebar {
+    flex: 0 0 200px;
+    /*width:200px;*/
+    padding:30px 20px 0 20px;
+    /*background: #ececec;*/
+    background: #D8E6E7;
+    /*flex: 1;*/
+
+}
+
+#sidebar ul{
+    margin:0;
+    padding:0;
+}
+
+#sidebar ul li {
+    margin:0;
+    list-style:none;
+    padding:10px 14px;
+}
+
+#sidebar ul li a {
+    display:block;
+}
+
+/*do zastanowienia*/
+#sidebar ul li.selected {
+    background:#5993bb;
+    border-radius:4px;
+}
+/*do zastanowienia*/
+#sidebar ul li.selected a {
+    color:#fff;
+}
+
+/*------------------------------*/
+/*---- Product-list ----*/
+/*------------------------------*/
+
+#product-list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+
+.product-list h1 {
+    margin-left: 20px;
+    width: 100%;
 }
 
 
 .product-list .item {
-    width:25%;
+    width:30%;
     padding:10px 20px 10px 0;
-    float:left;
+    /*float:left;*/
     text-align:center;
     line-height:1.2;
+    /*flex: auto;*/
 }
 
 .product-list .item img {
@@ -92,11 +349,124 @@ t
     margin-bottom:8px;
 }
 
+/*------------------------------*/
+/*---- Pagination ----*/
+/*------------------------------*/
 
-/*Tu zmienione*/
+
+ul.pagination  {
+    display: flex;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 30px 0 30px;
+    padding: 0;
+}
+
+/*.pagination li  {*/
+/*    display: inline;*/
+/*}*/
+
+.pagination a {
+    display: inline;
+    padding: 0 10px;
+    border: 1px solid #D8E6E7;
+    line-height: 35px;
+    border-left-width:0;
+    text-decoration:none;
+    float: left;
+    color: #519D9E;
+}
+
+.pagination a:hover {
+    background-color: #D8E6E7;
+    color:#94999E;
+}
+
+.pagination .disabled a,.pagination .disabled a:hover{
+    color:#94999E;
+    background-color:transparent;
+    cursor:default
+}
+
+.pagination li:first-child a {
+    border-left-width:1px;
+    border-radius:5px 0 0 5px
+}
+
+.pagination li:last-child a{
+    border-radius:0 5px 5px 0
+}
+
+/*------------------------------*/
+/*---- Product-detail ----*/
+/*------------------------------*/
+
+.product-detail {
+    text-align:justify;
+}
+
+.product-detail .price {
+    color:#333;
+    font-size:28px;
+    font-weight:bold;
+}
+
 .product-detail img {
     width:450px;
     height:450px;
     float:left;
     padding:0 20px 20px 0;
+}
+
+.product-detail h1 {
+    margin-bottom:0;
+}
+
+.product-detail h2 {
+    margin-top:10px;
+}
+
+.product-detail input[type=number] {
+    width: 40px;
+}
+
+
+/*------------------------------*/
+/*---- Order ----*/
+/*------------------------------*/
+
+
+
+.order-form {
+    float:left;
+}
+
+.order-info {
+    float:right;
+    width:300px;
+    background:#efefef;
+    padding:10px 20px;
+    color:#333;
+    border-bottom:4px solid #5993bb;
+}
+
+.order-info h3 {
+    color:#5993bb;
+}
+
+.order-info ul li {
+    margin:0;
+    padding:0;
+    font-size:14px;
+}
+
+.order-info p {
+    font-weight:bold;
+    float:right;
+}
+
+.order-info span {
+    float:right;
 }

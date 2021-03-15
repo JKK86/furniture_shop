@@ -10,7 +10,7 @@ Produkty - {{ product.name }}
                     {% static "img/no_image.png" %} {% endif %}" alt="Zdjęcie produktu">
         <h1>{{ product.name }}</h1>
         <h3><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h3>
-        <p>{{ product.price }} zł</p>
+        <p class="price">{{ product.price }} zł</p>
         <p>{{ product.description | linebreaks}}</p>
         <p>Szerokość: {{ product.width }} cm</p>
         <p>Głębokość: {{ product.depth }} cm</p>

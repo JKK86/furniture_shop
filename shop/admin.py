@@ -16,7 +16,7 @@ class ProductAdmin(admin.ModelAdmin):
     exclude = ['created', 'updated', ]
     list_display = ['name', 'slug', dimensions, 'price', 'stock', 'category', 'wood', 'created', 'updated', ]
     prepopulated_fields = {'slug': ('name',)}
-    list_filter = ['updated', 'created', AvailableFilter, 'wood']
+    list_filter = ['updated', 'created', AvailableFilter, 'wood', 'category']
     list_editable = ['price', 'stock']
     search_fields = ['name']
 
