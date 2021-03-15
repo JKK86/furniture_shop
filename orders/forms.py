@@ -5,7 +5,7 @@ from orders.validators import validate_postal_code
 
 
 class DeliveryTypeForm(forms.Form):
-    delivery_type = forms.ChoiceField(choices=DELIVERY_TYPES, label="Dostawa", widget=forms.RadioSelect)
+    delivery_type = forms.ChoiceField(choices=DELIVERY_TYPES, label="Sposób dostawy", widget=forms.RadioSelect)
 
 
 class DeliveryAddressForm(forms.Form):

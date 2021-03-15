@@ -150,13 +150,18 @@ ul.errorlist {
     border-bottom: 1px solid #77AAAD;
 }
 
-.messages li.warning {
+.warning {
     list-style: none;
-    background-color: #FDD692;
-    width: 100%;
+    background-color: #FBFFB9;
+    color:  #F6B352;
     padding: 20px 10px;
-    border-top: 1px solid #FFBC42;
-    border-bottom: 1px solid #FFBC42;
+    border-top: 1px solid  #F6B352;
+    border-bottom: 1px solid  #F6B352;
+}
+
+ul.messages {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 
@@ -325,6 +330,7 @@ ul.errorlist {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 
@@ -335,7 +341,8 @@ ul.errorlist {
 
 
 .product-list .item {
-    width:30%;
+    /*width:30%;*/
+    flex: 0 0 30%;
     padding:10px 20px 10px 0;
     /*float:left;*/
     text-align:center;
@@ -438,22 +445,34 @@ ul.pagination  {
 /*------------------------------*/
 
 
+#checkout {
+    display: flex;
+    justify-content: space-around;
+}
 
-.order-form {
-    float:left;
+.delivery {
+    flex: 0 0 30%;
+    background: #D8E6E7;
+    padding: 10px 20px;
+    color: #333;
+    border: 2px solid #333;
+    margin-right: 100px;
 }
 
 .order-info {
-    float:right;
-    width:300px;
+    flex: 0 0 30%;
     background:#efefef;
     padding:10px 20px;
     color:#333;
-    border-bottom:4px solid #5993bb;
+    border-bottom:4px solid #519D9E;
+}
+
+#id_delivery_type {
+    list-style: none;
 }
 
 .order-info h3 {
-    color:#5993bb;
+    color:#519D9E;
 }
 
 .order-info ul li {

@@ -37,7 +37,7 @@ def test_detail_product(client, set_up):
     product = set_up[1][0]
     response = client.get(f'/{product.id}/{product.slug}/')
     assert response.status_code == 200
-    # assert response.context['product'] == product
+    assert response.context['product'] == product
     # assert response.context['product'].name == product.name
     # assert response.context['product'].description == product.description
     # assert response.context['product'].price == product.price
