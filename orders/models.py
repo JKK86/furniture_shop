@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from cart.models import COLORS, NATURALNY
 from shop.models import Product
 
 ODBIOR = "OD"
@@ -52,3 +53,4 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Cena")
+    color = models.CharField(max_length=8, choices=COLORS, default=NATURALNY)

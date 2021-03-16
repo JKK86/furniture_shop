@@ -6,19 +6,19 @@
 
 {% block content %}
     <div class="cart">
-    {% if not items %}
-        <h5 class="info">Twój koszyk jest pusty</h5>
-    {% else %}
-        <h3>Zawartość Twojego koszyka</h3>
-        {% if messages %}
-            <ul class="messages">
-            {% for message in messages %}
-                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-        <table class="cart">
-            <thead>
+        {% if not items %}
+            <h5 class="info">Twój koszyk jest pusty</h5>
+        {% else %}
+            <h3>Zawartość Twojego koszyka</h3>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <table class="cart">
+                <thead>
                 <tr>
                     <th>Obraz</th>
                     <th>Produkt</th>
@@ -28,43 +28,53 @@
                     <th>Wartość</th>
                     <th>Usuń</th>
                 </tr>
-            </thead>
-            <tbody>
-            {% for item in items %}
-                {% with product=item.product %}
-                <tr>
-                    <td><img src="{% if product.image %} {{ product.image.url }} {% else %}
+                </thead>
+                <tbody>
+                {% for item in items %}
+                    {% with product=item.product %}
+                        <tr>
+                            <td><img src="{% if product.image %} {{ product.image.url }} {% else %}
                     {% static "img/no_image.png" %} {% endif %}" alt="Zdjęcie produktu"></td>
-                    <td><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
-                    <td>
-                        <form action="{% url 'cart_add' product.id %}" method="post" id="update_quantity_form">
-                            {% csrf_token %}
-                            {{ item.update_quantity_form.quantity }}
-                            {{ item.update_quantity_form.override_quantity }}
-                            <input type="submit" value="Zmień">
-                        </form>
-                    </td>
-                    <td>Kolor</td>
-                    <td>{{ product.price }} zł</td>
-                    <td>{{ item.total_price }} zł</td>
-                    <td>
-                        <form action="{% url 'cart_remove' product.id %}" method="post">
-                            {% csrf_token %}
-                            <input class="btn-delete" type="submit" value="Usuń">
-                        </form>
-                    </td>
+                            <td><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
+                            <td>
+                                <form action="{% url 'cart_add' product.id %}" method="post" id="update_quantity_form">
+                                    {% csrf_token %}
+                                    {{ item.update_quantity_form.quantity }}
+                                    {{ item.update_quantity_form.override_quantity }}
+                                    <input type="submit" value="Zmień">
+                                </form>
+                            </td>
+                            <td>
+                                {% if item.color == 'Natural'  %}
+                                    &nbsp; &nbsp; &nbsp;
+                                    {% else %}
+                                <span class="color_sample" style="background-color: {{ item.color }}">&nbsp; &nbsp; &nbsp;</span>
+                                {% endif %}
+                                <span class="color-text">&nbsp;{{ item.get_color_display }}&nbsp;</span>
+                                <a class="button" href="{% url 'set_color' product.id %}">Zmień</a>
+                            </td>
+                            <td>{{ product.price }} zł</td>
+                            <td>{{ item.total_price }} zł</td>
+                            <td>
+                                <form action="{% url 'cart_remove' product.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input class="btn-delete" type="submit" value="Usuń">
+                                </form>
+                            </td>
+                        </tr>
+                    {% endwith %}
+                {% endfor %}
+                <tr class="total">
+                    <td colspan="5">Do zapłaty</td>
+                    <td>{{ cart.total_price }} zł</td>
+                    <td></td>
                 </tr>
-                {% endwith %}
-            {% endfor %}
-            <tr>
-                <td colspan="5">Do zapłaty</td>
-                <td>{{ cart.total_price }} zł</td>
-            </tr>
-            </tbody>
-        </table>
-        <a href="{% url 'product_list' %}">Kontynuuj zakupy</a>
-        <a href="{% url 'order_create' %}">Do kasy</a>
-    {% endif %}
+                </tbody>
+            </table>
+            <div class="cart-navigate">
+                <p><a class="button light" href="{% url 'product_list' %}">Kontynuuj zakupy</a></p>
+                <p><a class="button" href="{% url 'order_create' %}">Do kasy</a></p>
+            </div>
+        {% endif %}
     </div>
-
 {% endblock %}

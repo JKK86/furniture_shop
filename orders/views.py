@@ -68,7 +68,8 @@ class OrderCreateView(View):
                     product=item.product,
                     order=order,
                     quantity=item.quantity,
-                    price=item.product.price)
+                    price=item.product.price,
+                    color=item.color)
                 item.product.stock -= item.quantity
                 item.product.save()
             items.delete()

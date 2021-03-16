@@ -4,8 +4,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.models import User
 
-from cart.forms import CartAddProductForm
-from cart.models import CartProduct, Cart
+from cart.forms import CartAddProductForm, CartSetColorForm
+from cart.models import CartProduct, Cart, NATURALNY
 from orders.forms import DeliveryTypeForm
 from orders.models import ODBIOR
 from shop.models import Product
@@ -58,3 +58,20 @@ class CartRemoveProductView(LoginRequiredMixin, View):
         item = cart.cartproduct_set.filter(product_id=product_id)
         item.delete()
         return redirect('cart_detail')
+
+
+class CartSetProductColorView(LoginRequiredMixin, View):
+    def get(self, request, product_id):
+        form = CartSetColorForm()
+        return render(request, 'shop/set_color.html', {'form': form})
+
+    def post(self, request, product_id):
+        product = get_object_or_404(Product, pk=product_id)
+        user = request.user
+        form = CartSetColorForm(request.POST)
+        if form.is_valid():
+            color = form.cleaned_data['color']
+            cartproduct = CartProduct.objects.get(product=product, cart__user=user)
+            cartproduct.color = color
+            cartproduct.save()
+            return redirect('cart_detail')

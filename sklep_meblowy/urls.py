@@ -41,6 +41,7 @@ urlpatterns = [
     path('cart/', cart_views.CartDetailView.as_view(), name='cart_detail'),
     path('cart/add/<int:product_id>/', cart_views.CartAddProductView.as_view(), name='cart_add'),
     path('cart/remove/<int:product_id>/', cart_views.CartRemoveProductView.as_view(), name='cart_remove'),
+    path('cart/set_color/<int:product_id>/', cart_views.CartSetProductColorView.as_view(), name='set_color'),
 
     path('orders/create/', orders_views.OrderCreateView.as_view(), name='order_create'),
 

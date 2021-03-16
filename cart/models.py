@@ -20,8 +20,7 @@ COLORS = (
     (DAB_CIEMNY, 'Dąb ciemny'),
     (MAHON, 'Mahoń'),
     (BIEL, 'Biel'),
-    (ORZECH_CIEMNY, 'Orzech ciemny'),
-    (ORZECH_JASNY, 'Orzech jasny'),
+    (ORZECH_JASNY, 'Orzech'),
     (ZIELEN, 'Zieleń'),
     (ORANZ, 'Oranż'),
     (CZARNY, 'Czerń'),
@@ -48,3 +47,4 @@ class CartProduct(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+    color = models.CharField(max_length=8, choices=COLORS, default=NATURALNY)

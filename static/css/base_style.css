@@ -1,4 +1,3 @@
-/*@import url(http://fonts.googleapis.com/css?family=Ubuntu);*/
 
 body {
     margin:0;
@@ -33,7 +32,8 @@ a.button, input[type="submit"] {
 
 a.button.light {
     color:#666;
-    background:#ededed;
+    /*background:#ededed;*/
+    background:#D8E6E7;
 }
 
 input[type="submit"].btn-delete {
@@ -49,7 +49,10 @@ input[type="submit"].btn-delete {
     text-align:right;
 }
 
-/*Tu zmienione*/
+/*------------------------------*/
+/*---- Tables----*/
+/*------------------------------*/
+
 table {
     width:100%;
     border-spacing:0;
@@ -67,15 +70,16 @@ tbody tr:nth-child(odd) {
     background:#efefef;
 }
 
-tbody tr.subtotal {
-    background:#ccc;
-}
-
 thead th, tbody tr.total {
     background:#5993bb;
     color:#fff;
     font-weight:bold;
 }
+
+
+/*------------------------------*/
+/*---- Cart----*/
+/*------------------------------*/
 
 div.cart {
     width: 80%;
@@ -87,20 +91,77 @@ table.cart {
     margin-bottom:40px;
 }
 
-/*Tu zmienione*/
 table.cart img {
     width:120px;
     height:120px;
 }
 
-tbody td.num {
-    text-align:right;
+.cart-navigate {
+    display: flex;
+    justify-content: space-between;
 }
 
-td input[type="submit"] {
+.color_sample {
+    border: 1px solid;
+    display: inline-block;
+    width: 20px;
+}
+
+
+span.color-text {
+    width: 90px;
+    display: inline-block;
+}
+
+/*------------------------------*/
+/*---- Color-palette----*/
+/*------------------------------*/
+
+
+.color-palette {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.color-palette-choice {
+    flex: 0 0 500px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.color-palette-sample {
+    flex: 0 0 500px;
+    height: 100px;
+    border: 2px solid;
+    margin: 10px;
+    padding: 10px;
+    /*background-color: #5993bb;*/
+}
+
+/*------------------------------*/
+/*---- Form inputs and buttons----*/
+/*------------------------------*/
+
+td a.button, input[type="submit"] {
     font-size:12px;
     padding:4px 10px;
+    height:23px;
+    vertical-align: middle;
 }
+
+
+td input[type="submit"] {
+    /*-webkit-appearance: none;*/
+    height:23px;
+}
+
+
+td a.button {
+    /*-webkit-appearance: none;*/
+    padding: 5px 10px
+}
+
 
 form p label, form p input {
     float:left;
@@ -128,14 +189,6 @@ form p input {
 
 }
 
-ul.errorlist {
-   float:left;
-   color:#ff0000;
-   clear:both;
-   font-size:13px;
-   margin:0;
-   padding:0;
-}
 
 /*------------------------------*/
 /*---- Messages----*/

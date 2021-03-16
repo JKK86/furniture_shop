@@ -1,6 +1,6 @@
 import pytest
 
-from cart.models import CartProduct, Cart
+from cart.models import CartProduct, Cart, ZIELEN
 
 
 @pytest.mark.django_db
@@ -40,3 +40,18 @@ def test_cart_remove_product(client, create_test_user, create_cart):
     assert response.status_code == 302
     product_ids = [item.product.id for item in cart.cartproduct_set.all()]
     assert product.id not in product_ids
+
+
+@pytest.mark.django_db
+def test_cart_set_product_color(client, create_cart, create_test_user):
+    user = create_test_user
+    cart = create_cart
+    product = cart.cartproduct_set.first().product
+    response = client.post(f'/cart/set_color/{product.id}/', {
+        'color': ZIELEN,
+    })
+    cart = Cart.objects.get(user=user)
+    item = CartProduct.objects.get(cart=cart, product=product)
+    assert item.color == ZIELEN
+    assert item.get_color_display() == 'Zieleń'
+    assert response.status_code == 302
