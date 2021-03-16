@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
@@ -6,6 +7,7 @@ from django.views import View
 from django.views.generic import FormView
 
 from cart.forms import CartAddProductForm
+from orders.models import Order, DeliveryAddress
 from shop.forms import RegistrationForm
 from shop.models import Product, Category
 
@@ -56,7 +58,7 @@ class ProductDetailView(View):
         else:
             product.available = "Produkt dostępny"
         form = CartAddProductForm()
-        return render(request, 'shop/product_detail.html', {'product': product, 'form':form})
+        return render(request, 'shop/product_detail.html', {'product': product, 'form': form})
 
 
 class SearchProductView(View):
@@ -77,3 +79,13 @@ class SearchProductView(View):
         return render(request, 'shop/product_list.html', {
             'products': products, 'categories': categories, 'category': category
         })
+
+
+class MyAccountView(LoginRequiredMixin, View):
+    def get(self, request):
+        user = request.user
+        orders = Order.objects.filter(user=user)
+        for order in orders:
+            order.total_price = sum([item.quantity * item.product.price for item in order.orderitem_set.all()])
+        delivery_addresses = DeliveryAddress.objects.filter(user=user)
+        return render(request, "shop/my_account.html", {'orders': orders, 'delivery_addresses': delivery_addresses})

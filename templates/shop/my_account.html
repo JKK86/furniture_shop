@@ -1,0 +1,56 @@
+{% extends 'shop/base.html' %}
+{% block title %}
+    Moje konto
+{% endblock %}
+{% block content %}
+<h2>Panel klienta</h2>
+    <hr/>
+    <p>Twoje zamówienia</p>
+    {% if not orders %}
+        <h5 class="info">Brak historii zamówień</h5>
+    {% else %}
+    <table>
+    <thead>
+    <tr>
+        <th>Numer zamówienia</th>
+        <th>Data utworzenia</th>
+        <th>Wartość</th>
+        <th>Status</th>
+        <th>Sposób dostawy</th>
+        <th>Adres dostawy</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+        <tr>
+        <td>{{ order }}</td>
+        <td>{{ order.created }}</td>
+        <td>{{ order.total_price }} zł</td>
+        <td>{% if order.paid %}Opłacone {% else %} Niepołacone {% endif %}</td>
+        <td>{{ order.get_delivery_display }}</td>
+        <td>{% if order.delivery_address %}{{ order.delivery_address.address }}<br>
+            {{ order.delivery_address.postal_code }}, {{ order.delivery_address.city }}
+            {% else %}{% endif %}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    {% endif %}
+    <hr/>
+    <p>Ustawienia konta</p>
+    <p>Imię i nazwisko: {{ user.first_name }} {{ user.last_name }}</p>
+    <p>Adres e-mail: {{ user.email }}</p>
+    <a href="">Edycja profilu</a>
+    <a href="{% url 'password_change' %}">Zmień hasło</a>
+    <hr/>
+    <p>Adresy dostawy</p>
+    <div class="user-addresses">
+    {% for delivery_address in delivery_addresses %}
+        <div>
+        <p>{{ user.first_name }} {{ user.last_name }}</p>
+        <p>{{ delivery_address.address }}</p>
+        <p>{{ delivery_address.postal_code }}, {{ delivery_address.city }}</p>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

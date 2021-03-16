@@ -164,6 +164,22 @@ ul.messages {
     padding-right: 0;
 }
 
+/*------------------------------*/
+/*---- MyAccount ----*/
+/*------------------------------*/
+
+.user-addresses {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.user-addresses div{
+    margin: 20px;
+    padding: 10px;
+    border: 1px dashed;
+    border-radius: 10px;
+}
+
 
 /*------------------------------*/
 /*---- Header ----*/

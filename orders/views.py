@@ -39,7 +39,7 @@ class OrderCreateView(View):
                     delivery_address=None
                 )
             else:
-                form_delivery_address = DeliveryAddressForm(request.POST)
+                form_delivery_address = DeliveryAddressForm(request.POST) #to chyba jest duplikat
                 if form_delivery_address.is_valid():
                     address = form_delivery_address.cleaned_data['address']
                     postal_code = form_delivery_address.cleaned_data['postal_code']

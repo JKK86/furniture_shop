@@ -1,5 +1,4 @@
 import pytest
-import random
 
 from django.contrib.auth.models import User
 

@@ -8,7 +8,6 @@ def test_detail_cart(client, create_test_user, create_cart):
     user = create_test_user
     cart = create_cart
     items = cart.cartproduct_set.all()
-    # product = cart.cartproduct_set.first().product
     response = client.get('/cart/')
     assert response.status_code == 200
     assert len(response.context['cart']) == len(cart)

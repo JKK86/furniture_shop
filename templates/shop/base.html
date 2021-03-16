@@ -33,7 +33,7 @@
     <div class="user">
         {% if user.is_authenticated %}
             <span>Witaj {{ user.first_name }}!</span>
-            <a href="">Moje konto</a>
+            <a href="{% url 'my_account' %}">Moje konto</a>
             <a href="{% url 'logout' %}">Wyloguj</a>
         {% else %}
             <a href="{% url 'login' %}">Zaloguj</a>

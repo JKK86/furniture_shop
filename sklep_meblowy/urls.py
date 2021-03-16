@@ -36,6 +36,8 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('registration/', views.RegistrationView.as_view(), name='registration'),
 
+    path('account/', views.MyAccountView.as_view(), name='my_account'),
+
     path('cart/', cart_views.CartDetailView.as_view(), name='cart_detail'),
     path('cart/add/<int:product_id>/', cart_views.CartAddProductView.as_view(), name='cart_add'),
     path('cart/remove/<int:product_id>/', cart_views.CartRemoveProductView.as_view(), name='cart_remove'),

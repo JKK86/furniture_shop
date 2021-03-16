@@ -3,6 +3,30 @@ from django.db import models
 
 from shop.models import Product
 
+NATURALNY = 'Natural'
+DAB_JASNY = "#935B2A"
+DAB_CIEMNY = "#381A10"
+MAHON = "#B35D32"
+BIEL = 'White'
+ORZECH_CIEMNY = '#30180D'
+ORZECH_JASNY = '#5F311B'
+ZIELEN = '#444213'
+ORANZ = '#C37437'
+CZARNY = 'Black'
+
+COLORS = (
+    (NATURALNY, 'Naturalny'),
+    (DAB_JASNY, 'Dąb jasny'),
+    (DAB_CIEMNY, 'Dąb ciemny'),
+    (MAHON, 'Mahoń'),
+    (BIEL, 'Biel'),
+    (ORZECH_CIEMNY, 'Orzech ciemny'),
+    (ORZECH_JASNY, 'Orzech jasny'),
+    (ZIELEN, 'Zieleń'),
+    (ORANZ, 'Oranż'),
+    (CZARNY, 'Czerń'),
+)
+
 
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
