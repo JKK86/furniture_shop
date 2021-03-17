@@ -1,0 +1,11 @@
+{% extends 'shop/base.html' %}
+{% block title %}Edycja profilu{% endblock %}
+{% block content %}
+<h1>Edycja profilu użytkownika</h1>
+        <p>Wypełnij poniższy formularz, aby zmienić dane osobowe</p>
+    <form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+        <p><input type="submit" value="Zapisz"></p>
+    </form>
+{% endblock %}

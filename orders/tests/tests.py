@@ -49,7 +49,7 @@ def test_order_create_with_address(client, create_test_user, create_cart):
 
 
 @pytest.mark.django_db
-def test_my_account_order_list(client, create_order, create_addresses):
+def test_show_my_account(client, create_order, create_addresses):
     orders = create_order
     addresses = create_addresses
     response = client.get('/account/')

@@ -47,7 +47,7 @@
                 <a href="{% url 'cart_detail' %}">
                     Koszyk &#128722
                     ({{ cart_summary|length }})
-                    {{ cart_summary.get_total_price }} zł
+                    {{ cart_summary.get_total_price_with_discount|floatformat:2 }} zł
                 </a>
             {% else %}
                 <a href="{% url 'cart_detail' %}">

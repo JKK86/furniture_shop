@@ -38,8 +38,12 @@ class OrderCreateView(View):
                     delivery=delivery,
                     delivery_address=None
                 )
+                if cart.coupon:
+                    order.coupon = cart.coupon
+                    order.discount = cart.coupon.discount
+                    order.save()
             else:
-                form_delivery_address = DeliveryAddressForm(request.POST) #to chyba jest duplikat
+                # form_delivery_address = DeliveryAddressForm(request.POST) #to chyba jest duplikat
                 if form_delivery_address.is_valid():
                     address = form_delivery_address.cleaned_data['address']
                     postal_code = form_delivery_address.cleaned_data['postal_code']
@@ -56,6 +60,10 @@ class OrderCreateView(View):
                         delivery=delivery,
                         delivery_address=delivery_address
                     )
+                    if cart.coupon:
+                        order.coupon = cart.coupon
+                        order.discount = cart.coupon.discount
+                        order.save()
                 else:
                     return render(request, 'orders/order_create.html', {
                         'form_delivery_type': form_delivery_type,
@@ -73,6 +81,7 @@ class OrderCreateView(View):
                 item.product.stock -= item.quantity
                 item.product.save()
             items.delete()
+            cart.coupon = None
             return render(request, 'orders/order_created.html', {'order': order})
         else:
             return render(request, 'orders/order_create.html', {

@@ -11,9 +11,7 @@ h1, h2, h3, h4, h5 , h6 {
 
 a {
     text-decoration:none;
-    /*color:#5993bb;*/
     color:#519D9E;
-    /*color: #4F86C6;*/
 }
 
 a:hover {
@@ -22,7 +20,6 @@ a:hover {
 
 a.button, input[type="submit"] {
     color:#fff;
-    /*background:#5993bb;*/
     background:#519D9E;
     border-radius:4px;
     padding:10px 20px;
@@ -32,7 +29,6 @@ a.button, input[type="submit"] {
 
 a.button.light {
     color:#666;
-    /*background:#ededed;*/
     background:#D8E6E7;
 }
 
@@ -76,6 +72,11 @@ thead th, tbody tr.total {
     font-weight:bold;
 }
 
+tbody tr.subtotal {
+    background:#D8E6E7;
+    color:#333;
+    font-weight:bold;
+}
 
 /*------------------------------*/
 /*---- Cart----*/
@@ -99,6 +100,7 @@ table.cart img {
 .cart-navigate {
     display: flex;
     justify-content: space-between;
+    margin: 30px 0
 }
 
 .color_sample {
@@ -136,14 +138,13 @@ span.color-text {
     border: 2px solid;
     margin: 10px;
     padding: 10px;
-    /*background-color: #5993bb;*/
 }
 
 /*------------------------------*/
 /*---- Form inputs and buttons----*/
 /*------------------------------*/
 
-td a.button, input[type="submit"] {
+td a.button, td input[type="submit"] {
     font-size:12px;
     padding:4px 10px;
     height:23px;
@@ -208,9 +209,19 @@ form p input {
     background-color: #FBFFB9;
     color:  #F6B352;
     padding: 20px 10px;
-    border-top: 1px solid  #F6B352;
-    border-bottom: 1px solid  #F6B352;
+    border-top: 1px solid #F6B352;
+    border-bottom: 1px solid #F6B352;
 }
+
+.error {
+    list-style: none;
+    background-color: #FADAD8;
+    color: #AF4034;
+    padding: 20px 10px;
+    border-top: 1px solid #AF4034;
+    border-bottom: 1px solid #AF4034;
+}
+
 
 ul.messages {
     padding-left: 0;
@@ -248,7 +259,6 @@ ul.messages {
 }
 
 #header .logo {
-    /*font-family: Brush Script MT, cursive;*/
     font-family: 'Ubuntu', sans-serif;
     display: flex;
     justify-content: flex-start;
@@ -276,12 +286,9 @@ ul.messages {
     align-items: center;
     color:#333;
     font-size:14px;
-    /*margin-right:20px;*/
 }
 
 .info-important {
-    /*color: #9055A2;*/
-    /*color: #333;*/
     font-size:18px;
     margin-left: 20px;
 }
@@ -294,14 +301,10 @@ ul.messages {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*background:  #D5F1E7;*/
-    /*background:  #ececec;*/
     background:   #519D9E;
-    /*color:#444;*/
     color:#fff;
     margin: 0 100px;
     padding:5px 0;
-    /*overflow:auto;*/
 }
 
 #subheader .user span {
@@ -339,8 +342,6 @@ ul.messages {
 #content {
     padding:0 100px;
     overflow:hidden;
-    /*display: flex;*/
-    /*justify-content: flex-start;*/
 }
 
 /*------------------------------*/
@@ -358,11 +359,8 @@ ul.messages {
 
 #sidebar {
     flex: 0 0 200px;
-    /*width:200px;*/
     padding:30px 20px 0 20px;
-    /*background: #ececec;*/
     background: #D8E6E7;
-    /*flex: 1;*/
 
 }
 
@@ -381,12 +379,11 @@ ul.messages {
     display:block;
 }
 
-/*do zastanowienia*/
 #sidebar ul li.selected {
     background:#5993bb;
     border-radius:4px;
 }
-/*do zastanowienia*/
+
 #sidebar ul li.selected a {
     color:#fff;
 }
@@ -402,12 +399,10 @@ ul.messages {
     width: 100%;
 }
 
-
 .product-list h1 {
     margin-left: 20px;
     width: 100%;
 }
-
 
 .product-list .item {
     /*width:30%;*/
@@ -434,7 +429,6 @@ ul.messages {
 /*---- Pagination ----*/
 /*------------------------------*/
 
-
 ul.pagination  {
     display: flex;
     width:100%;
@@ -444,10 +438,6 @@ ul.pagination  {
     margin: 30px 0 30px;
     padding: 0;
 }
-
-/*.pagination li  {*/
-/*    display: inline;*/
-/*}*/
 
 .pagination a {
     display: inline;
@@ -522,6 +512,7 @@ ul.pagination  {
 #checkout {
     display: flex;
     justify-content: space-around;
+    align-items: flex-start;
 }
 
 .delivery {
@@ -550,7 +541,7 @@ ul.pagination  {
 }
 
 .order-info ul li {
-    margin:0;
+    margin:20px;
     padding:0;
     font-size:14px;
 }
@@ -562,4 +553,8 @@ ul.pagination  {
 
 .order-info span {
     float:right;
+}
+
+.order-navigate p, p a {
+    margin: 50px 0 50px;
 }

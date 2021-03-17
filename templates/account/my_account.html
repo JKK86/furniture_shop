@@ -25,7 +25,7 @@
         <tr>
         <td>{{ order }}</td>
         <td>{{ order.created }}</td>
-        <td>{{ order.total_price }} zł</td>
+        <td>{{ order.get_total_cost }} zł</td>
         <td>{% if order.paid %}Opłacone {% else %} Niepołacone {% endif %}</td>
         <td>{{ order.get_delivery_display }}</td>
         <td>{% if order.delivery_address %}{{ order.delivery_address.address }}<br>
@@ -41,11 +41,14 @@
     <p>Imię i nazwisko: {{ user.first_name }} {{ user.last_name }}</p>
     <p>Adres e-mail: {{ user.email }}</p>
     <p>
-    <a class="button" href="">Edycja profilu</a>
+    <a class="button" href="{% url 'edit_profile' %}">Edycja profilu</a>
     <a class="button" href="{% url 'password_change' %}">Zmień hasło</a>
     </p>
     <hr/>
     <p>Adresy dostawy</p>
+    {% if not delivery_addresses %}
+        <h5 class="info">Brak zapisanych adresów</h5>
+    {% endif %}
     <div class="user-addresses">
     {% for delivery_address in delivery_addresses %}
         <div>

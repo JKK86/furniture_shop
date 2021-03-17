@@ -8,24 +8,7 @@ from django.views.generic import FormView
 
 from cart.forms import CartAddProductForm
 from orders.models import Order, DeliveryAddress
-from shop.forms import RegistrationForm
 from shop.models import Product, Category
-
-
-class RegistrationView(FormView):
-    template_name = 'registration/register.html'
-    form_class = RegistrationForm
-    success_url = reverse_lazy('login')
-
-    def form_valid(self, form):
-        User.objects.create_user(
-            username=form.cleaned_data['username'],
-            first_name=form.cleaned_data['first_name'],
-            last_name=form.cleaned_data['last_name'],
-            password=form.cleaned_data['password'],
-            email=form.cleaned_data['email']
-        )
-        return super().form_valid(form)
 
 
 class ProductListView(View):
@@ -79,13 +62,3 @@ class SearchProductView(View):
         return render(request, 'shop/product_list.html', {
             'products': products, 'categories': categories, 'category': category
         })
-
-
-class MyAccountView(LoginRequiredMixin, View):
-    def get(self, request):
-        user = request.user
-        orders = Order.objects.filter(user=user)
-        for order in orders:
-            order.total_price = sum([item.quantity * item.product.price for item in order.orderitem_set.all()])
-        delivery_addresses = DeliveryAddress.objects.filter(user=user)
-        return render(request, "shop/my_account.html", {'orders': orders, 'delivery_addresses': delivery_addresses})

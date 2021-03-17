@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 from cart.forms import CartAddProductForm, CartSetColorForm
 from cart.models import CartProduct, Cart, NATURALNY
+from coupon.forms import AddCouponForm
 from orders.forms import DeliveryTypeForm
 from orders.models import ODBIOR
 from shop.models import Product
@@ -16,6 +17,7 @@ class CartDetailView(LoginRequiredMixin, View):
         user = request.user
         cart, created = Cart.objects.get_or_create(user=user)
         items = cart.cartproduct_set.all()
+        form_coupon = AddCouponForm()
         cart.total_price = 0
         for item in items:
             item.update_quantity_form = CartAddProductForm(initial={
@@ -24,7 +26,7 @@ class CartDetailView(LoginRequiredMixin, View):
             })
             item.total_price = item.quantity * item.product.price
             cart.total_price += item.total_price
-        return render(request, 'cart/cart_detail.html', {'items': items, 'cart': cart})
+        return render(request, 'cart/cart_detail.html', {'items': items, 'cart': cart, 'form_coupon': form_coupon})
 
 
 class CartAddProductView(LoginRequiredMixin, View):

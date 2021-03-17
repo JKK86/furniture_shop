@@ -22,6 +22,8 @@ from django.contrib.auth import views as auth_views
 from shop import views
 from cart import views as cart_views
 from orders import views as orders_views
+from account import views as account_views
+from coupon import views as coupon_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,9 +36,11 @@ urlpatterns = [
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-    path('registration/', views.RegistrationView.as_view(), name='registration'),
+    path('registration/', account_views.RegistrationView.as_view(), name='registration'),
 
-    path('account/', views.MyAccountView.as_view(), name='my_account'),
+    path('account/', account_views.MyAccountView.as_view(), name='my_account'),
+    path('account/edit_profile/', account_views.EditProfileView.as_view(), name='edit_profile'),
+
 
     path('cart/', cart_views.CartDetailView.as_view(), name='cart_detail'),
     path('cart/add/<int:product_id>/', cart_views.CartAddProductView.as_view(), name='cart_add'),
@@ -44,6 +48,8 @@ urlpatterns = [
     path('cart/set_color/<int:product_id>/', cart_views.CartSetProductColorView.as_view(), name='set_color'),
 
     path('orders/create/', orders_views.OrderCreateView.as_view(), name='order_create'),
+
+    path('coupon/apply/', coupon_views.ApplyCouponView.as_view(), name='apply_coupon'),
 
     path('', views.ProductListView.as_view(), name='product_list'),
     path('<slug:category_slug>/', views.ProductListView.as_view(), name='product_list_by_category'),

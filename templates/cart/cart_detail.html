@@ -45,10 +45,10 @@
                                 </form>
                             </td>
                             <td>
-                                {% if item.color == 'Natural'  %}
+                                {% if item.color == 'Natural' %}
                                     &nbsp; &nbsp; &nbsp;
-                                    {% else %}
-                                <span class="color_sample" style="background-color: {{ item.color }}">&nbsp; &nbsp; &nbsp;</span>
+                                {% else %}
+                                    <span class="color_sample" style="background-color: {{ item.color }}">&nbsp; &nbsp; &nbsp;</span>
                                 {% endif %}
                                 <span class="color-text">&nbsp;{{ item.get_color_display }}&nbsp;</span>
                                 <a class="button" href="{% url 'set_color' product.id %}">Zmień</a>
@@ -64,13 +64,33 @@
                         </tr>
                     {% endwith %}
                 {% endfor %}
+                {% if cart.coupon %}
+                    <tr class="subtotal">
+                        <td colspan="5">Suma</td>
+                        <td>{{ cart.total_price }} zł</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">Kupon rabatowy "{{ cart.coupon }}" - {{ cart.coupon.discount }}% rabatu</td>
+                        <td>-{{ cart.get_discount|floatformat:2 }} zł</td>
+                        <td></td>
+                    </tr>
+                {% endif %}
                 <tr class="total">
                     <td colspan="5">Do zapłaty</td>
-                    <td>{{ cart.total_price }} zł</td>
+                    <td>{{ cart.get_total_price_with_discount|floatformat:2 }} zł</td>
                     <td></td>
                 </tr>
                 </tbody>
             </table>
+            <div class="coupon-form">
+                <p>Kupon rabatowy</p>
+                <form action="{% url 'apply_coupon' %}" method="post">
+                    {% csrf_token %}
+                    {{ form_coupon }}
+                    <input type="submit" value="Zastosuj">
+                </form>
+            </div>
             <div class="cart-navigate">
                 <p><a class="button light" href="{% url 'product_list' %}">Kontynuuj zakupy</a></p>
                 <p><a class="button" href="{% url 'order_create' %}">Do kasy</a></p>

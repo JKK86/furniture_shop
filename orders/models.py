@@ -1,7 +1,11 @@
+from decimal import Decimal
+
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from cart.models import COLORS, NATURALNY
+from coupon.models import Coupon
 from shop.models import Product
 
 ODBIOR = "OD"
@@ -38,6 +42,13 @@ class Order(models.Model):
     delivery = models.CharField(max_length=2, choices=DELIVERY_TYPES, default=ODBIOR, verbose_name="Dostawa")
     delivery_address = models.ForeignKey(DeliveryAddress, on_delete=models.SET_NULL, null=True,
                                          verbose_name="Adres dostawy")
+    coupon = models.ForeignKey(Coupon, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Kupon")
+    discount = models.PositiveIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(100)], verbose_name="Zniżka", default=0)
+
+    def get_total_cost(self):
+        total_cost = sum([item.quantity * item.product.price for item in self.orderitem_set.all()])
+        return total_cost - total_cost * (self.discount / Decimal('100'))
 
     def __str__(self):
         return f"Zamówienie nr {self.id}"
