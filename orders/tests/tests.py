@@ -46,3 +46,14 @@ def test_order_create_with_address(client, create_test_user, create_cart):
     assert response.context['order'].delivery_address.city == 'Test'
     assert DeliveryAddress.objects.count() == 1
     assert sum([item.quantity for item in response.context['order'].orderitem_set.all()]) == cart_length
+
+
+@pytest.mark.django_db
+def test_my_account_order_list(client, create_order, create_addresses):
+    orders = create_order
+    addresses = create_addresses
+    response = client.get('/account/')
+    assert response.status_code == 200
+    assert len(orders) == len(response.context['orders'])
+    assert len(addresses) == len(response.context['delivery_addresses'])
+

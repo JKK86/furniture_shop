@@ -425,6 +425,11 @@ ul.messages {
     margin-bottom:8px;
 }
 
+.dimensions {
+    line-height:1;
+    font-size: 14px;
+}
+
 /*------------------------------*/
 /*---- Pagination ----*/
 /*------------------------------*/

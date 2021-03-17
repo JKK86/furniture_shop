@@ -40,8 +40,10 @@
     <p>Ustawienia konta</p>
     <p>Imię i nazwisko: {{ user.first_name }} {{ user.last_name }}</p>
     <p>Adres e-mail: {{ user.email }}</p>
-    <a href="">Edycja profilu</a>
-    <a href="{% url 'password_change' %}">Zmień hasło</a>
+    <p>
+    <a class="button" href="">Edycja profilu</a>
+    <a class="button" href="{% url 'password_change' %}">Zmień hasło</a>
+    </p>
     <hr/>
     <p>Adresy dostawy</p>
     <div class="user-addresses">

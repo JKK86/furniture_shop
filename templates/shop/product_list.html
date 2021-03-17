@@ -28,9 +28,11 @@
                     {% static "img/no_image.png" %} {% endif %}" alt="Zdjęcie produktu"></a>
                     <p><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></p>
                     <p>Cena: {{ product.price }} zł</p>
+                <div class="dimensions">
                     <p>Szerokość: {{ product.width }} cm</p>
                     <p>Głębokość: {{ product.depth }} cm</p>
                     <p>Wysokość: {{ product.height }} cm</p>
+                </div>
                 </div>
             {% endfor %}
 
