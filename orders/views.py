@@ -28,6 +28,8 @@ class OrderCreateView(View):
         user = request.user
         cart = Cart.objects.get(user=user)
         items = cart.cartproduct_set.all()
+        for item in items:
+            item.total_price = item.quantity * item.product.price
         form_delivery_type = DeliveryTypeForm(request.POST)
         form_delivery_address = DeliveryAddressForm(request.POST)
         if form_delivery_type.is_valid():
@@ -43,7 +45,6 @@ class OrderCreateView(View):
                     order.discount = cart.coupon.discount
                     order.save()
             else:
-                # form_delivery_address = DeliveryAddressForm(request.POST) #to chyba jest duplikat
                 if form_delivery_address.is_valid():
                     address = form_delivery_address.cleaned_data['address']
                     postal_code = form_delivery_address.cleaned_data['postal_code']
@@ -82,6 +83,7 @@ class OrderCreateView(View):
                 item.product.save()
             items.delete()
             cart.coupon = None
+            cart.save()
             return render(request, 'orders/order_created.html', {'order': order})
         else:
             return render(request, 'orders/order_create.html', {

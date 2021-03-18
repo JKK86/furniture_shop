@@ -47,6 +47,7 @@ class Order(models.Model):
         validators=[MinValueValidator(0), MaxValueValidator(100)], verbose_name="Zniżka", default=0)
 
     def get_total_cost(self):
+        """ Calculate total cost of order including discount coupons"""
         total_cost = sum([item.quantity * item.product.price for item in self.orderitem_set.all()])
         return total_cost - total_cost * (self.discount / Decimal('100'))
 

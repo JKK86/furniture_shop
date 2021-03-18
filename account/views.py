@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
@@ -22,6 +23,7 @@ class RegistrationView(FormView):
             password=form.cleaned_data['password'],
             email=form.cleaned_data['email']
         )
+        messages.success(self.request, "Użytkownik został pomyślnie zarejestrowany")
         return super().form_valid(form)
 
 

@@ -9,6 +9,8 @@ class OrderItemAdminInline(admin.TabularInline):
 
 class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderItemAdminInline,)
+    list_display = ['id', 'user', 'created', 'updated', 'paid', 'delivery', 'delivery_address', 'coupon', 'discount', ]
+    list_filter = ['updated', 'created', 'paid', 'delivery']
 
 
 admin.site.register(Order, OrderAdmin)

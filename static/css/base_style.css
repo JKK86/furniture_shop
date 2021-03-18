@@ -190,6 +190,14 @@ form p input {
 
 }
 
+ul.errorlist {
+   float:left;
+   color:#ff0000;
+   clear:both;
+   font-size:13px;
+   margin:0;
+   padding:0;
+}
 
 /*------------------------------*/
 /*---- Messages----*/
@@ -198,6 +206,7 @@ form p input {
 
 .info {
     background-color: #D8E6E7;
+    color: #4F86C6;
     width: 100%;
     padding: 20px 10px;
     border-top: 1px solid #77AAAD;
@@ -221,6 +230,16 @@ form p input {
     border-top: 1px solid #AF4034;
     border-bottom: 1px solid #AF4034;
 }
+
+.success {
+    list-style: none;
+    background-color: #cff0da;
+    color: #4f953b;
+    padding: 20px 10px;
+    border-top: 1px solid #4f953b;
+    border-bottom: 1px solid #4f953b;
+}
+
 
 
 ul.messages {
