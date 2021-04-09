@@ -577,3 +577,20 @@ ul.pagination  {
 .order-navigate p, p a {
     margin: 50px 0 50px;
 }
+
+
+/*------------------------------*/
+/*---- Braintree Payment ----*/
+/*------------------------------*/
+
+form div.field {
+    font-size:14px;
+    color:#666;
+    width:320px;
+    height:22px;
+    margin-bottom:12px;
+    padding:6px 12px;
+    border:0;
+    background:#efefef;
+    border-radius:4px;
+}

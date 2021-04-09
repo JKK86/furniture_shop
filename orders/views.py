@@ -84,7 +84,9 @@ class OrderCreateView(View):
             items.delete()
             cart.coupon = None
             cart.save()
-            return render(request, 'orders/order_created.html', {'order': order})
+            request.session['order_id'] = order.id
+            # return render(request, 'orders/order_created.html', {'order': order})
+            return redirect('payment_process')
         else:
             return render(request, 'orders/order_create.html', {
                 'form_delivery_type': form_delivery_type,

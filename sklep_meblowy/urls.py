@@ -24,6 +24,7 @@ from cart import views as cart_views
 from orders import views as orders_views
 from account import views as account_views
 from coupon import views as coupon_views
+from payment import views as payment_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -50,6 +51,10 @@ urlpatterns = [
     path('orders/create/', orders_views.OrderCreateView.as_view(), name='order_create'),
 
     path('coupon/apply/', coupon_views.ApplyCouponView.as_view(), name='apply_coupon'),
+
+    path('payment/process/', payment_views.PaymentView.as_view(), name='payment_process'),
+    path('payment/done/', payment_views.payment_done, name='payment_done'),
+    path('payment/cancelled/', payment_views.payment_cancelled, name='payment_cancelled'),
 
     path('', views.ProductListView.as_view(), name='product_list'),
     path('<slug:category_slug>/', views.ProductListView.as_view(), name='product_list_by_category'),

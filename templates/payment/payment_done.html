@@ -1,0 +1,11 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    Płatność
+{% endblock %}
+{% block content %}
+<h1>Płatność zakończyła się sukcesem</h1>
+    <p>Dziękujemy! Twoja płatność została odnotowana</p>
+    <p><a href="{% url 'product_list' %}">Powrót na stronę główną</a></p>
+
+{% endblock %}

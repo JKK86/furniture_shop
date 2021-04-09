@@ -1,0 +1,11 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    Płatność
+{% endblock %}
+{% block content %}
+<h1>Płatność nie powiodła się</h1>
+    <p>Wystąpił problem podczas przetwarzania płatności</p>
+    <p><a href="{% url 'product_list' %}">Powrót na stronę główną</a></p>
+
+{% endblock %}
