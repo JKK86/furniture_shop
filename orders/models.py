@@ -45,6 +45,7 @@ class Order(models.Model):
     coupon = models.ForeignKey(Coupon, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Kupon")
     discount = models.PositiveIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)], verbose_name="Zniżka", default=0)
+    braintree_id = models.CharField(max_length=128, blank=True)
 
     def get_total_cost(self):
         """ Calculate total cost of order including discount coupons"""

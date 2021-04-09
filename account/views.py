@@ -31,8 +31,6 @@ class MyAccountView(LoginRequiredMixin, View):
     def get(self, request):
         user = request.user
         orders = Order.objects.filter(user=user)
-        # for order in orders:
-        #     order.total_price = sum([item.quantity * item.product.price for item in order.orderitem_set.all()])
         delivery_addresses = DeliveryAddress.objects.filter(user=user)
         return render(request, "account/my_account.html", {'orders': orders, 'delivery_addresses': delivery_addresses})
 
