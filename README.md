@@ -12,6 +12,17 @@ An online furniture shop, that allows users to choose pieces of furniture from t
 - CSS
 
 ## Features:
+-user authorization (register, login, logout, edit profile, change password, reset password)
+-available product list (all and by category)
+-search products
+-product details view
+-add/remove products to/from the cart (with specyfing quantity and color of every item)
+-discount coupon system
+-specyfing delivery address or collection in person
+-payment processing
+-complete an order
+-user panel with orders history
+-admin panel
 
 ## Screenshots
 **Landing Page:**
