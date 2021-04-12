@@ -14,23 +14,23 @@ An online furniture shop, that allows users to choose pieces of furniture from t
 ## Features:
 
 ## Screenshots
-Landing Page:
+**Landing Page:**
 
 ![Product list screen](./screenshots/Product_list.png)
 
-Product detail:
+**Product detail:**
 
 ![Product list screen](./screenshots/Product_detail.png)
 
-User Panel:
+**User Panel:**
 
 ![Product list screen](./screenshots/User_panel.png)
 
-Shopping Cart:
+**Shopping Cart:**
 
 ![Product list screen](./screenshots/Cart.png)
 
-Checkout:
+**Checkout:**
 
 ![Product list screen](./screenshots/Checkout.png)
 
