@@ -31,6 +31,7 @@ An online furniture shop, that allows users to choose pieces of furniture from t
 - complete an order
 - user panel with orders history
 - admin panel
+- tests in PyTest
 
 ## Screenshots
 **Landing Page:**
