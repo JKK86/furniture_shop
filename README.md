@@ -1,5 +1,5 @@
 # Furniture shop
-A simple e-commerce web aplication built with Django Framework.
+A simple e-commerce web application built with Django Framework.
 
 ## Table of contents
 * [General info](#general-info)
