@@ -5,7 +5,7 @@ from django.views import View
 from django.contrib.auth.models import User
 
 from cart.forms import CartAddProductForm, CartSetColorForm
-from cart.models import CartProduct, Cart, NATURALNY
+from cart.models import CartProduct, Cart
 from coupon.forms import AddCouponForm
 from orders.forms import DeliveryTypeForm
 from orders.models import ODBIOR
