@@ -1,5 +1,13 @@
 # Furniture shop
-A simple e-commerce web aplication built with Django Framework.
+A simple e-commerce web application built with Django Framework.
+
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Features](#features)
+* [Screenshots](#screenshots)
+* [Setup](#setup)
+* [Inspiration](#inspiration)
 
 ## General Info
 An online furniture shop, that allows users to choose pieces of furniture from the list of available products, add them to their shopping cart and fulfill the order. It was created as a final project for CodersLab online course.
@@ -12,17 +20,18 @@ An online furniture shop, that allows users to choose pieces of furniture from t
 - CSS
 
 ## Features:
--user authorization (register, login, logout, edit profile, change password, reset password)
--available product list (all and by category)
--search products
--product details view
--add/remove products to/from the cart (with specyfing quantity and color of every item)
--discount coupon system
--specyfing delivery address or collection in person
--payment processing
--complete an order
--user panel with orders history
--admin panel
+- user authorization (register, login, logout, edit profile, change password, reset password)
+- available product list (all and by category)
+- search products
+- product details view
+- add/remove products to/from the cart (with specyfing quantity and color of every item)
+- discount coupon system
+- specyfing delivery address or collection in person
+- payment processing
+- complete an order
+- user panel with orders history
+- admin panel
+- tests in PyTest
 
 ## Screenshots
 **Landing Page:**
@@ -76,4 +85,8 @@ python manage.py runserver
 **Note** if you want payments to work you will need to enter your own Braintree keys in the settings file.
 
 **Note** in the settings file you should complete your own database settings.
+
+## Inspiration
+
+This app is inspired by Antonio Mele book „Django 3”.
 
