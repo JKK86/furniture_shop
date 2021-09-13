@@ -8,6 +8,7 @@ from django.views.generic import FormView
 
 from cart.forms import CartAddProductForm
 from orders.models import Order, DeliveryAddress
+from shop.forms import CustomizedProductForm
 from shop.models import Product, Category
 
 
@@ -62,3 +63,9 @@ class SearchProductView(View):
         return render(request, 'shop/product_list.html', {
             'products': products, 'categories': categories, 'category': category
         })
+
+
+class CustomizeProductView(LoginRequiredMixin, View):
+    def get(self, request):
+        form = CustomizedProductForm()
+        return render(request, "shop/customize_product_form.html", {'form': form})

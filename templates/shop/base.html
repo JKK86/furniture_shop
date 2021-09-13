@@ -41,6 +41,10 @@
         {% endif %}
     </div>
 
+    <div class="menu">
+        <a href="{% url 'customize_product' %}">Meble na zamówienie</a>
+    </div>
+
     <div class="my_cart">
         {% if user.is_authenticated %}
             {% if cart_summary|length > 0 %}

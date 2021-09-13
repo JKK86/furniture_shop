@@ -56,6 +56,7 @@ urlpatterns = [
     path('payment/done/', payment_views.payment_done, name='payment_done'),
     path('payment/cancelled/', payment_views.payment_cancelled, name='payment_cancelled'),
 
+    path('customize_product/', views.CustomizeProductView.as_view(), name='customize_product'),
     path('', views.ProductListView.as_view(), name='product_list'),
     path('<slug:category_slug>/', views.ProductListView.as_view(), name='product_list_by_category'),
     path('<int:id>/<slug:slug>/', views.ProductDetailView.as_view(), name='product_detail'),

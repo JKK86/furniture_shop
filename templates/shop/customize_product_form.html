@@ -1,0 +1,15 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+Produkt na zamówienie
+{% endblock %}
+{% block content %}
+<h1>Produkt na zamówienie</h1>
+    <p>Nie znalazłeś w Naszej ofercie wymarzonego mebla?
+        Wypełnij formularz, aby zamówić u Nas unikalny produkt, który będzie spełniał wszystkie Twoje wymagania!</p>
+    <form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+        <p><input type="submit" value="Złóż zamówienie"></p>
+    </form>
+{% endblock %}
