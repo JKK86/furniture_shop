@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from shop.custom_filters import AvailableFilter
-from shop.models import Product, Category, Wood
+from shop.models import Product, Category, Wood, CustomizedProduct
 
 
 def dimensions(obj):
@@ -30,3 +30,14 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(Wood)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['type', 'description', ]
+
+
+@admin.register(CustomizedProduct)
+class CustomizedProductAdmin(admin.ModelAdmin):
+    exclude = ['created', 'updated', ]
+    list_display = \
+        ['name', 'slug', 'category', 'wood', 'price', 'color', dimensions, 'user', 'status', 'created', 'updated', ]
+    prepopulated_fields = {'slug': ('name',)}
+    list_filter = ['updated', 'created', 'wood', 'category', 'user']
+    list_editable = ['price', 'status']
+    search_fields = ['name']
