@@ -100,7 +100,8 @@ class CustomizedProduct(models.Model):
                                  verbose_name="Kategoria")
     wood = models.ForeignKey(Wood, on_delete=models.CASCADE, verbose_name="Rodzaj drewna")
     price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, verbose_name="Cena")
-    file = models.FileField(upload_to="files", blank=True, verbose_name="Plik")
+    file = models.FileField(upload_to="files", blank=True, verbose_name="Plik",
+                            help_text="Załącz plik z rysunkiem w formacie jpg lub pdf")
     color = models.CharField(max_length=8, choices=COLORS, default=NATURALNY, verbose_name="Kolor")
     width = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Szerokość")
     depth = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Głębokość")

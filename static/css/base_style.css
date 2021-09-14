@@ -529,6 +529,36 @@ ul.pagination  {
     width: 40px;
 }
 
+/*------------------------------*/
+/*---- Customized Product ----*/
+/*------------------------------*/
+
+
+#customize_product_form form p select, textarea {
+    font-size:13px;
+    margin-bottom:10px;
+    padding:10px 12px;
+}
+
+#customize_product_form form p select{
+    width: 320px;
+}
+
+#customize_product_form form p textarea {
+    width: 300px;
+}
+
+#customize_product_form form p select, textarea {
+    float:left;
+    clear:both;
+}
+
+span.helptext {
+    float:left;
+    clear:both;
+    font-size: 13px;
+    padding: 5px 0 12px;
+}
 
 /*------------------------------*/
 /*---- Order ----*/
