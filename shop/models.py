@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
@@ -99,9 +100,10 @@ class CustomizedProduct(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="customized_products",
                                  verbose_name="Kategoria")
     wood = models.ForeignKey(Wood, on_delete=models.CASCADE, verbose_name="Rodzaj drewna")
-    price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, verbose_name="Cena")
+    price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True, verbose_name="Cena")
     file = models.FileField(upload_to="files", blank=True, verbose_name="Plik",
-                            help_text="Załącz plik z rysunkiem w formacie jpg lub pdf")
+                            help_text="Załącz plik z rysunkiem w formacie jpg lub pdf",
+                            validators=[FileExtensionValidator(allowed_extensions=['pdf', 'jpg', 'jpeg'])])
     color = models.CharField(max_length=8, choices=COLORS, default=NATURALNY, verbose_name="Kolor")
     width = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Szerokość")
     depth = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Głębokość")
@@ -110,6 +112,7 @@ class CustomizedProduct(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name="Data modyfikacji")
     status = models.BooleanField(default=False, verbose_name="Status")
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Klient")
+    date = models.DateField(verbose_name="Data realizacji", null=True, blank=True)
 
     def __str__(self):
         return self.name

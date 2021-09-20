@@ -8,7 +8,7 @@ Produkt na zamówienie
     <p>Nie znalazłeś w Naszej ofercie wymarzonego mebla?
         Wypełnij formularz, aby zamówić u Nas unikalny produkt, który będzie spełniał wszystkie Twoje wymagania!</p>
     <div id="customize_product_form">
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
         <p><input type="submit" value="Złóż zamówienie"></p>

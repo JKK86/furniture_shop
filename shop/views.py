@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
@@ -9,7 +10,7 @@ from django.views.generic import FormView
 from cart.forms import CartAddProductForm
 from orders.models import Order, DeliveryAddress
 from shop.forms import CustomizedProductForm
-from shop.models import Product, Category
+from shop.models import Product, Category, CustomizedProduct, Wood
 
 
 class ProductListView(View):
@@ -69,3 +70,27 @@ class CustomizeProductView(LoginRequiredMixin, View):
     def get(self, request):
         form = CustomizedProductForm()
         return render(request, "shop/customize_product_form.html", {'form': form})
+
+    def post(self, request):
+        form = CustomizedProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            cd = form.cleaned_data
+            customized_product = form.save(commit=False)
+            user = request.user
+            customized_product.user = user
+            customized_product.save()
+            subject = f"Zlecenie na wykonanie projektu na zamowienie"
+            subject = subject[0][0]
+            message = f"""Użytkownik {user.first_name} {user.last_name}, {user.email} 
+przesyła zlecenie na wykonanie produktu na zamówienie.
+Nazwa projektu: {customized_product.name}.
+Szczegóły dotyczące projektu znajdują się na stronie panelu administracyjnego, 
+w zakładce 'Produkty na zamówienie'.
+Czas na odpowiedź - 3 dni robocze
+"""
+            email_from = "shop_orders@local.com"
+            admins = User.objects.filter(is_staff=True)
+            email_to = [admin.email for admin in admins]
+            send_mail(subject, message, email_from, email_to, fail_silently=False)
+            ctx = {"customized_product": customized_product}
+            return render(request, "shop/customize_product_confirmation.html", ctx)

@@ -36,8 +36,8 @@ class ProductAdmin(admin.ModelAdmin):
 class CustomizedProductAdmin(admin.ModelAdmin):
     exclude = ['created', 'updated', ]
     list_display = \
-        ['name', 'slug', 'category', 'wood', 'price', 'color', dimensions, 'user', 'status', 'created', 'updated', ]
+        ['name', 'slug', 'category', 'wood', 'price', 'color', dimensions, 'user', 'date', 'status', 'created', 'updated', ]
     prepopulated_fields = {'slug': ('name',)}
-    list_filter = ['updated', 'created', 'wood', 'category', 'user']
+    list_filter = ['updated', 'created', 'wood', 'category', 'user', 'date']
     list_editable = ['price', 'status']
     search_fields = ['name']

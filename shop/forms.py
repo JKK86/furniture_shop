@@ -1,14 +1,13 @@
 import django.forms as forms
-from django.contrib.auth.models import User
-from django.forms import ModelForm, Textarea
 
 from shop.models import CustomizedProduct
 
 
-class CustomizedProductForm(ModelForm):
+class CustomizedProductForm(forms.ModelForm):
     class Meta:
         model = CustomizedProduct
-        exclude = ['slug', 'price', 'created', 'updated', 'status', 'user']
+        exclude = ['slug', 'price', 'created', 'updated', 'status', 'user', 'date']
         widgets = {
-            'description': Textarea(attrs={'rows': 7})
+            'description': forms.Textarea(attrs={'rows': 7}),
+            'file': forms.FileInput(attrs={'accept': 'application/pdf, image/jpeg'})
         }
