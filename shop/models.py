@@ -27,6 +27,18 @@ COLORS = (
     (CZARNY, 'Czerń'),
 )
 
+DRAFT = 'd'
+COMPLETED = 'c'
+OFFER = 'o'
+IN_PROGRESS = 'p'
+
+STATUS_CHOICES = [
+    (DRAFT, 'Szkic'),
+    (OFFER, 'Oferta'),
+    (IN_PROGRESS, 'W realizacji'),
+    (COMPLETED, 'Zrealiozwany'),
+]
+
 
 class Category(models.Model):
     name = models.CharField(max_length=64, verbose_name="Nazwa")
@@ -110,7 +122,7 @@ class CustomizedProduct(models.Model):
     height = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Wysokość")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Data dodania")
     updated = models.DateTimeField(auto_now=True, verbose_name="Data modyfikacji")
-    status = models.BooleanField(default=False, verbose_name="Status")
+    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=DRAFT, verbose_name="Status")
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Klient")
     date = models.DateField(verbose_name="Data realizacji", null=True, blank=True)
 

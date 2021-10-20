@@ -1,6 +1,7 @@
 import pytest
 
-from cart.models import CartProduct, Cart, ZIELEN
+from cart.models import CartProduct, Cart
+from shop.models import ZIELEN
 
 
 @pytest.mark.django_db
